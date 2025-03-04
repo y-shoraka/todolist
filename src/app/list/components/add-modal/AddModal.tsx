@@ -2,19 +2,14 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { Item } from "../../page";
 
 const AddModal = ({
   modalMode,
   closeHandler,
 }: {
   modalMode: { open: boolean; edit: string };
-  closeHandler: ({
-    item,
-    edit,
-  }: {
-    item: Record<string, any>;
-    edit: string;
-  }) => void;
+  closeHandler: ({ item, edit }: { item: Item; edit: string }) => void;
 }) => {
   const {
     control,

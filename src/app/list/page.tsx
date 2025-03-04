@@ -5,6 +5,12 @@ import React, { useState, useEffect } from "react";
 import AddModal from "./components/add-modal";
 import { Button, Checkbox } from "@mui/material";
 
+export interface Item {
+  name: string;
+  id: string;
+  done: boolean;
+}
+
 const List = () => {
   // Initialize state with data from localStorage (if it exists)
   const [list, setList] = useState<Record<string, any>[]>(() => {
@@ -27,13 +33,7 @@ const List = () => {
     setModalMode((prev) => ({ ...prev, open: true }));
   };
 
-  const closeHandler = ({
-    item,
-    edit,
-  }: {
-    item: Record<string, any>;
-    edit: string;
-  }) => {
+  const closeHandler = ({ item, edit }: { item: Item; edit: string }) => {
     if (item.name) {
       if (edit) {
         setList((prev) =>
@@ -49,14 +49,13 @@ const List = () => {
     }
     setModalMode(() => ({ open: false, edit: "" }));
   };
-  console.log(list);
+
   const deleteHandler = (id: string) => {
     setList((prev) => prev.filter((item) => item.id !== id));
   };
 
   const editHandler = (name: string) => {
     setModalMode({ open: true, edit: name });
-    console.log(name);
   };
 
   const toggleDoneHandler = (id: string) => {

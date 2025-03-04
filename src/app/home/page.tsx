@@ -1,3 +1,6 @@
+"use client";
+
+import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -10,7 +13,9 @@ const Page = () => {
 
   return (
     <div>
-      <button onClick={clickHandler}>to do list</button>
+      <Button variant="contained" onClick={clickHandler}>
+        to do list
+      </Button>
     </div>
   );
 };
